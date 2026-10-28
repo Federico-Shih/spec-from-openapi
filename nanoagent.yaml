@@ -1,0 +1,43 @@
+_ > nanoagent.plugin.v0001.ManifestConfig:
+id: spec-from-openapi
+name: Spec from OpenAPI
+version: 0.1.1
+status: in-development
+spec: nanoagent.plugin/v0001
+
+runtime > nanoagent.plugin.v0001.RuntimeConfig:
+  type: mcp_stdio
+  command: [uv, run, --frozen, python, -m, plugin]
+
+permissions > nanoagent.plugin.v0001.PermissionsConfig:
+  network > nanoagent.plugin.v0001.NetworkConfig:
+    hosts: []
+  filesystem > nanoagent.plugin.v0001.FilesystemConfig:
+    write: [workspace]
+
+# One entry per contract.Tool; its input and output classes are contract.TOOLS's.
+tools > dict[contract.Tool, nanoagent.plugin.v0001.ToolConfig]:
+  read_openapi:
+    description: Read a bundled OpenAPI document as written, typed - its servers, its default security, every operation with its declared params and own security, and its security schemes
+  probe:
+    description: Send one request to the document's mock API and return the response body as JSON text; an undeclared path or method raises
+  write_spec:
+    description: Write the declarative source spec (base_url, auth, auth_ref, endpoints) to the workspace's spec.json, replacing any earlier one
+  openapi_index:
+    description: Every declared operation with the params the mock API honours and its real paginator, and the goal's endpoint and auth, the task's hidden reference
+
+# One entry per contract.Task; its input and output classes are contract.TASKS's.
+tasks > dict[contract.Task, nanoagent.plugin.v0001.TaskConfig]:
+  spec-from-openapi:
+    description: Write a source spec for the goal's records from an OpenAPI document and probes of its mock API
+    runner: agent
+    tools: [read_openapi, probe, write_spec]
+    reference: openapi_index
+    instructions: |-
+      Write a declarative source spec in spec.json that reads the task's goal records from the task's API, then submit path spec.json.
+      The goal's records: observations = one station's water-quality observations (station ST-002); stations = the monitoring stations; alerts = the alerts stations raised; regions = the regions.
+      Call read_openapi with the task's document. Use only operations it declares, with their path and method exactly as declared: never make up an endpoint.
+      Probe the goal's endpoint with the probe tool before writing the spec, and probe again to learn how it pages: the document may leave out how an endpoint pages, and an API may ignore a param the document declares. Follow a next cursor or change a page or offset param and compare the responses.
+      In each endpoint, params lists only fixed query params the document declares for that operation and the API acts on (send required ones); the paginator's own param goes in paginator.param, not in params. paginator.type is offset, page, cursor or none; cursor_path is the JSONPath of the next cursor in the body (cursor only, else null). record_selector is a JSONPath to the array of records in a response you probed: $ for a root array, $.field, or $.field.field for records nested deeper.
+      base_url is one of the document's servers that is not deprecated. auth is how the goal's operation authenticates (its security scheme: api_key_header, api_key_query, bearer, ...), and auth_ref is that scheme's credential_ref: a credential NAME. An operation's own security, when it declares one (empty means none), replaces the document's default_security; only an operation whose security is null uses the default. Never put a key, or any example key the document shows, in the spec.
+      Call write_spec with the whole spec; a later call replaces it. Then submit path spec.json.

@@ -1,0 +1,12 @@
+_ > nanoagent.plugin.v0001.ProductConfig:
+tagline: "Turn an OpenAPI document into a source spec you can trust"
+summary: "Name the records you need from an API. The agent reads the API's OpenAPI document as written (a deprecated server, an operation that overrides the default security), probes the API to see how it really answers, pages and nests its records, and writes a declarative source spec: the endpoint, its params, the record selector, the paginator and the credential name to authenticate with. A deterministic check holds the spec to the document and the probes, so no endpoint is made up and no key is written down."
+highlights:
+  - "Built-in mock API and OpenAPI document, so every run is the same and needs no network"
+  - "Every endpoint, param and paginator is checked against the document and real probe responses"
+  - "Credentials appear by name only: a key in the spec fails the check"
+steps:
+  - "Choose which records you want: observations, stations, alerts or regions"
+  - "The agent reads the OpenAPI document and probes the endpoints it needs"
+  - "It writes spec.json with the endpoint, params, record selector, paginator and auth reference"
+  - "The check scores the spec against the document and the probes"

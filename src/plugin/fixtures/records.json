@@ -1,0 +1,371 @@
+{
+ "observations": [
+  {
+   "id": "obs-001",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-01",
+   "temperature_c": 3.8,
+   "turbidity_ntu": 3.8
+  },
+  {
+   "id": "obs-002",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-05",
+   "temperature_c": 4.5,
+   "turbidity_ntu": 1.0
+  },
+  {
+   "id": "obs-003",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-09",
+   "temperature_c": 5.2,
+   "turbidity_ntu": 2.2
+  },
+  {
+   "id": "obs-004",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-13",
+   "temperature_c": 5.9,
+   "turbidity_ntu": 3.4
+  },
+  {
+   "id": "obs-005",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-17",
+   "temperature_c": 6.6,
+   "turbidity_ntu": 4.6
+  },
+  {
+   "id": "obs-006",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-21",
+   "temperature_c": 7.3,
+   "turbidity_ntu": 1.8
+  },
+  {
+   "id": "obs-007",
+   "station_id": "ST-001",
+   "observed_on": "2026-03-25",
+   "temperature_c": 8.0,
+   "turbidity_ntu": 3.0
+  },
+  {
+   "id": "obs-008",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-01",
+   "temperature_c": 5.1,
+   "turbidity_ntu": 2.6
+  },
+  {
+   "id": "obs-009",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-05",
+   "temperature_c": 5.8,
+   "turbidity_ntu": 3.8
+  },
+  {
+   "id": "obs-010",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-09",
+   "temperature_c": 6.5,
+   "turbidity_ntu": 1.0
+  },
+  {
+   "id": "obs-011",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-13",
+   "temperature_c": 7.2,
+   "turbidity_ntu": 2.2
+  },
+  {
+   "id": "obs-012",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-17",
+   "temperature_c": 7.9,
+   "turbidity_ntu": 3.4
+  },
+  {
+   "id": "obs-013",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-21",
+   "temperature_c": 8.6,
+   "turbidity_ntu": 4.6
+  },
+  {
+   "id": "obs-014",
+   "station_id": "ST-002",
+   "observed_on": "2026-03-25",
+   "temperature_c": 9.3,
+   "turbidity_ntu": 1.8
+  },
+  {
+   "id": "obs-015",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-01",
+   "temperature_c": 6.4,
+   "turbidity_ntu": 1.4
+  },
+  {
+   "id": "obs-016",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-05",
+   "temperature_c": 7.1,
+   "turbidity_ntu": 2.6
+  },
+  {
+   "id": "obs-017",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-09",
+   "temperature_c": 7.8,
+   "turbidity_ntu": 3.8
+  },
+  {
+   "id": "obs-018",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-13",
+   "temperature_c": 8.5,
+   "turbidity_ntu": 1.0
+  },
+  {
+   "id": "obs-019",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-17",
+   "temperature_c": 9.2,
+   "turbidity_ntu": 2.2
+  },
+  {
+   "id": "obs-020",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-21",
+   "temperature_c": 9.9,
+   "turbidity_ntu": 3.4
+  },
+  {
+   "id": "obs-021",
+   "station_id": "ST-003",
+   "observed_on": "2026-03-25",
+   "temperature_c": 10.6,
+   "turbidity_ntu": 4.6
+  },
+  {
+   "id": "obs-022",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-01",
+   "temperature_c": 7.7,
+   "turbidity_ntu": 4.2
+  },
+  {
+   "id": "obs-023",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-05",
+   "temperature_c": 8.4,
+   "turbidity_ntu": 1.4
+  },
+  {
+   "id": "obs-024",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-09",
+   "temperature_c": 9.1,
+   "turbidity_ntu": 2.6
+  },
+  {
+   "id": "obs-025",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-13",
+   "temperature_c": 9.8,
+   "turbidity_ntu": 3.8
+  },
+  {
+   "id": "obs-026",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-17",
+   "temperature_c": 10.5,
+   "turbidity_ntu": 1.0
+  },
+  {
+   "id": "obs-027",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-21",
+   "temperature_c": 11.2,
+   "turbidity_ntu": 2.2
+  },
+  {
+   "id": "obs-028",
+   "station_id": "ST-004",
+   "observed_on": "2026-03-25",
+   "temperature_c": 11.9,
+   "turbidity_ntu": 3.4
+  }
+ ],
+ "stations": [
+  {
+   "id": "ST-001",
+   "name": "Bergen Harbour",
+   "country": "NO",
+   "region": "west"
+  },
+  {
+   "id": "ST-002",
+   "name": "Lake Vattern",
+   "country": "SE",
+   "region": "south"
+  },
+  {
+   "id": "ST-003",
+   "name": "Oslo Fjord",
+   "country": "NO",
+   "region": "east"
+  },
+  {
+   "id": "ST-004",
+   "name": "Saimaa North",
+   "country": "FI",
+   "region": "east"
+  },
+  {
+   "id": "ST-005",
+   "name": "Aarhus Bay",
+   "country": "DK",
+   "region": "south"
+  },
+  {
+   "id": "ST-006",
+   "name": "Lulea Pier",
+   "country": "SE",
+   "region": "north"
+  },
+  {
+   "id": "ST-007",
+   "name": "Tromso Sound",
+   "country": "NO",
+   "region": "north"
+  },
+  {
+   "id": "ST-008",
+   "name": "Turku Inlet",
+   "country": "FI",
+   "region": "south"
+  },
+  {
+   "id": "ST-009",
+   "name": "Reykjavik Port",
+   "country": "IS",
+   "region": "west"
+  }
+ ],
+ "alerts": [
+  {
+   "id": "al-001",
+   "station_id": "ST-006",
+   "severity": "low",
+   "raised_on": "2026-04-01",
+   "kind": "temperature"
+  },
+  {
+   "id": "al-002",
+   "station_id": "ST-002",
+   "severity": "high",
+   "raised_on": "2026-04-02",
+   "kind": "outage"
+  },
+  {
+   "id": "al-003",
+   "station_id": "ST-007",
+   "severity": "medium",
+   "raised_on": "2026-04-03",
+   "kind": "turbidity"
+  },
+  {
+   "id": "al-004",
+   "station_id": "ST-003",
+   "severity": "low",
+   "raised_on": "2026-04-04",
+   "kind": "temperature"
+  },
+  {
+   "id": "al-005",
+   "station_id": "ST-008",
+   "severity": "high",
+   "raised_on": "2026-04-05",
+   "kind": "outage"
+  },
+  {
+   "id": "al-006",
+   "station_id": "ST-004",
+   "severity": "low",
+   "raised_on": "2026-04-06",
+   "kind": "turbidity"
+  },
+  {
+   "id": "al-007",
+   "station_id": "ST-009",
+   "severity": "medium",
+   "raised_on": "2026-04-07",
+   "kind": "temperature"
+  },
+  {
+   "id": "al-008",
+   "station_id": "ST-005",
+   "severity": "high",
+   "raised_on": "2026-04-08",
+   "kind": "outage"
+  },
+  {
+   "id": "al-009",
+   "station_id": "ST-001",
+   "severity": "low",
+   "raised_on": "2026-04-09",
+   "kind": "turbidity"
+  },
+  {
+   "id": "al-010",
+   "station_id": "ST-006",
+   "severity": "medium",
+   "raised_on": "2026-04-10",
+   "kind": "temperature"
+  },
+  {
+   "id": "al-011",
+   "station_id": "ST-002",
+   "severity": "low",
+   "raised_on": "2026-04-11",
+   "kind": "outage"
+  },
+  {
+   "id": "al-012",
+   "station_id": "ST-007",
+   "severity": "high",
+   "raised_on": "2026-04-12",
+   "kind": "turbidity"
+  },
+  {
+   "id": "al-013",
+   "station_id": "ST-003",
+   "severity": "medium",
+   "raised_on": "2026-04-13",
+   "kind": "temperature"
+  }
+ ],
+ "regions": [
+  {
+   "id": "north",
+   "name": "North",
+   "stations": 2
+  },
+  {
+   "id": "south",
+   "name": "South",
+   "stations": 3
+  },
+  {
+   "id": "east",
+   "name": "East",
+   "stations": 2
+  },
+  {
+   "id": "west",
+   "name": "West",
+   "stations": 2
+  }
+ ]
+}

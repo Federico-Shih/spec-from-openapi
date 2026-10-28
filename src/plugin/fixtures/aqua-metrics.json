@@ -1,0 +1,423 @@
+{
+ "openapi": "3.0.3",
+ "info": {
+  "title": "Aqua Metrics API",
+  "version": "1.4.2",
+  "description": "Water-quality observations, monitoring stations, alerts and regions from a network of Nordic stations. Every read needs an API key."
+ },
+ "servers": [
+  {
+   "url": "https://v0.aquametrics.example",
+   "description": "Legacy v0 gateway. Deprecated: retired on 2026-06-30, it answers every request with 410 Gone.",
+   "x-deprecated": true
+  },
+  {
+   "url": "https://api.aquametrics.example",
+   "description": "Production"
+  },
+  {
+   "url": "https://sandbox.aquametrics.example",
+   "description": "Sandbox, with the same endpoints"
+  }
+ ],
+ "security": [
+  {
+   "ApiKeyHeader": []
+  }
+ ],
+ "paths": {
+  "/v1/observations": {
+   "get": {
+    "operationId": "listObservations",
+    "summary": "List one station's water-quality observations, oldest first",
+    "parameters": [
+     {
+      "name": "station_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "The station whose observations to list, e.g. ST-002"
+     },
+     {
+      "name": "since",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "format": "date"
+      },
+      "description": "Only observations on or after this date"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 100
+      },
+      "description": "How many observations to return per response"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "The station's observations",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "data": {
+           "type": "object",
+           "properties": {
+            "items": {
+             "type": "array",
+             "items": {
+              "$ref": "#/components/schemas/Observation"
+             }
+            },
+            "count": {
+             "type": "integer"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "ObservationsQueryKey": []
+     }
+    ]
+   }
+  },
+  "/v1/stations": {
+   "get": {
+    "operationId": "listStations",
+    "summary": "List the monitoring stations",
+    "parameters": [
+     {
+      "name": "country",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Only stations in this ISO country code"
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "description": "The page to return, from 1"
+     },
+     {
+      "name": "per_page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 50
+      },
+      "description": "Stations per page"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "A page of stations",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "results": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Station"
+           }
+          },
+          "page": {
+           "type": "integer"
+          },
+          "total_pages": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "operationId": "createStation",
+    "summary": "Register a new monitoring station (partners only)",
+    "security": [
+     {
+      "PartnerBearer": []
+     }
+    ],
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "The registered station",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "station": {
+           "$ref": "#/components/schemas/Station"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/v1/alerts": {
+   "get": {
+    "operationId": "listAlerts",
+    "summary": "List the alerts stations raised, newest last",
+    "parameters": [
+     {
+      "name": "severity",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "enum": [
+        "low",
+        "medium",
+        "high"
+       ]
+      },
+      "description": "Only alerts of this severity"
+     },
+     {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "description": "The page to return, from 1"
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "description": "How many alerts to skip"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 20
+      },
+      "description": "Alerts per response"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Alerts",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "items": {
+           "type": "array",
+           "items": {
+            "$ref": "#/components/schemas/Alert"
+           }
+          },
+          "offset": {
+           "type": "integer"
+          },
+          "limit": {
+           "type": "integer"
+          },
+          "total": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/v1/regions": {
+   "get": {
+    "operationId": "listRegions",
+    "summary": "List the regions stations are grouped in",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "Every region",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/Region"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/v1/status": {
+   "get": {
+    "operationId": "getStatus",
+    "summary": "The service's health",
+    "security": [],
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "The service status",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "string"
+          },
+          "version": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "securitySchemes": {
+   "ApiKeyHeader": {
+    "type": "apiKey",
+    "in": "header",
+    "name": "X-Api-Key",
+    "description": "Send your key in the X-Api-Key header, for example X-Api-Key: amk_live_4f9c2e7a1b8d3c6e5f0a. Hosts keep it in the credential named AQUA_METRICS_API_KEY.",
+    "x-credential-ref": "AQUA_METRICS_API_KEY"
+   },
+   "PartnerBearer": {
+    "type": "http",
+    "scheme": "bearer",
+    "description": "A partner token, for writes only. Hosts keep it in the credential named AQUA_METRICS_PARTNER_TOKEN.",
+    "x-credential-ref": "AQUA_METRICS_PARTNER_TOKEN"
+   },
+   "ObservationsQueryKey": {
+    "type": "apiKey",
+    "in": "query",
+    "name": "api_key",
+    "description": "The observations feed is licensed apart from the rest of the API: send its own key as the api_key query parameter. Hosts keep it in the credential named AQUA_OBSERVATIONS_KEY.",
+    "x-credential-ref": "AQUA_OBSERVATIONS_KEY"
+   }
+  },
+  "schemas": {
+   "Observation": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "station_id": {
+      "type": "string"
+     },
+     "observed_on": {
+      "type": "string",
+      "format": "date"
+     },
+     "temperature_c": {
+      "type": "number"
+     },
+     "turbidity_ntu": {
+      "type": "number"
+     }
+    }
+   },
+   "Station": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "region": {
+      "type": "string"
+     }
+    }
+   },
+   "Alert": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "station_id": {
+      "type": "string"
+     },
+     "severity": {
+      "type": "string"
+     },
+     "raised_on": {
+      "type": "string",
+      "format": "date"
+     },
+     "kind": {
+      "type": "string"
+     }
+    }
+   },
+   "Region": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "stations": {
+      "type": "integer"
+     }
+    }
+   }
+  }
+ }
+}
