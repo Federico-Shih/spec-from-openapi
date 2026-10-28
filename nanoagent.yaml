@@ -1,7 +1,7 @@
 _ > nanoagent.plugin.v0001.ManifestConfig:
 id: spec-from-openapi
 name: Spec from OpenAPI
-version: 0.1.1
+version: 0.1.2
 status: in-development
 spec: nanoagent.plugin/v0001
 
